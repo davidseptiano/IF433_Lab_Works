@@ -1,5 +1,8 @@
 package oop_00000101285_emanueldavidseptianohermawan.week01
 
+// Tulis Di Luar main()
+fun calculateStatus(score: Int) = if (score > 75) "Lulus" else "Tidak Lulus"
+
 fun main() {
     // REFACTOR: Gunakan val dan hapus tipe data eksplisit
     var name: String = "John Thor"
@@ -17,4 +20,7 @@ fun main() {
     }
 
     println("Grade kamu: $grade")
+
+    // Panggil Di dalam Main()
+    println("Status: ${calculateStatus(score)}")
 }
