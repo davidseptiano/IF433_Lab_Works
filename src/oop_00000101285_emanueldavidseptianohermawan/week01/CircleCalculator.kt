@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     var area: Double = pi * radius * radius
 
     // Output Concatenation
-    println("Radius: " + radius + ", Area: "+ area)
+    println("Radius: $radius, Area: $area")
 
     // Logic check
     checkSize(area)
