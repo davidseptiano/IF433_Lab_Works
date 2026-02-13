@@ -17,7 +17,7 @@ fun main() {
 
     // Validasi di sisi pemanggil (Main)
     if (nim.length != 5) {
-        println("ERROR: Pendaftarab dibatalkan. NIM harus 5 karakter!")
+        println("ERROR: Pendaftaran dibatalkan. NIM harus 5 karakter!")
         // Program berhenti di sini untuk mahasiswa ini, tidak membuat objek
     } else {
         print("Masukan Jurusan: ")
