@@ -1,6 +1,9 @@
 package oop_00000101285_emanueldavidseptianohermawan.week03
 
 class Employee(val name: String) {
+    val tax: Double
+        get() = salary * 0.1
+
     var salary: Int = 0
         set(value) {
             if (value < 0) {
@@ -19,7 +22,7 @@ class Employee(val name: String) {
     }
 
     // Kita tidak buat getter untuk performanceRating, jadi data ini benar-benar rahasia
-// kecuali kita buat funstion khusus untuk print.
+    // kecuali kita buat funstion khusus untuk print.
     fun printStatus() {
         println("Karyawan: $name, Rating: $performanceRating")
     }
