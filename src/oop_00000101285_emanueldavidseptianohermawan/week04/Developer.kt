@@ -6,7 +6,7 @@ class Developer(
     val programmingLanguage: String
 ) : Employee(name, baseSalary) {
 
-    override fun work{
+    override fun work() {
         println("$name sedang ngoding menggunakan $programmingLanguage.")
     }
 }
