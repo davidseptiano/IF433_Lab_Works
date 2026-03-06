@@ -26,4 +26,9 @@ fun main() {
         }
         println("----------------------------")
     }
+
+    val math = MathHelper()
+    println("Luas persegi: ${math.hitungLuas(4)}")
+    println("Luas persegi panjang: ${math.hitungLuas(4,5)}")
+    println("Luas lingkaran: ${math.hitungLuas(7.0)}")
 }
