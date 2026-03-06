@@ -32,4 +32,18 @@ fun main() {
     println("Luas persegi panjang: ${math.hitungLuas(4,5)}")
     println("Luas lingkaran: ${math.hitungLuas(7.0)}")
 
+    val eWallet = EWallet("DANA", 50000.0)
+    val credit = CreditCard("Visa", 100000.0)
+
+    val payments: List<PaymentMethod> = listOf(eWallet, credit)
+
+    // Percobaan pembayaran pertama
+    for (p in payments) {
+        p.processPayment(75000.0)
+
+        if (p is EWallet) {
+            p.topUp(50000.0) // Smart casting untuk menambah saldo
+            p.processPayment(75000.0)
+        }
+    }
 }
