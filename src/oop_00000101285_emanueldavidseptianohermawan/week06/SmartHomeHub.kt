@@ -16,6 +16,7 @@ class SmartHomeHub {
         }
     }
 
+    // fungsi activateSecurityMode()
     fun activateSecurityMode() {
         for (device in devices) {
 
