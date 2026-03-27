@@ -1,5 +1,7 @@
 package oop_00000101285_emanueldavidseptianohermawan.week07
 
+import javax.swing.plaf.basic.BasicListUI
+
 fun main() {
     println("=== TEST SINGLETON ===")
     println("Status: ${DatabaseManager.connectionStatus}")
@@ -34,4 +36,25 @@ fun main() {
         is ApiResponse.Error -> "Munculkan alert: ${response.message}"
         is ApiResponse.Loading -> "Tampilkan Spinner"
     }
+
+    // Test SINGLETON
+    GameManager.startGame()
+    GameManager.startGame()
+
+    // TEST ENUM
+    println("Drop Chance LEGENDARY: ${ItemRarity.LEGENDARY.dropChance}%")
+
+    // TEST FACTORY
+    val starterWeapon = Weapon.forgeStaterSword()
+    println("Senjata awal: ${starterWeapon.item.name}, Damage: ${starterWeapon.item.damage}")
+
+    // COPY (IMMUTABLE DATA CLASS)
+    val upgradedItem = starterWeapon.item.copy(damage = 25)
+
+    // EVENT SYSTEM
+    processEvent(BattleState.SafeZone)
+    processEvent(BattleState.MonsterEncounter("Goblin Nakal"))
+    processEvent(BattleState.LootDropped(upgradedItem))
+    processEvent(BattleState.GameOver("Terkena jebakan racun"))
+
 }
