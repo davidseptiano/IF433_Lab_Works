@@ -9,4 +9,10 @@ fun main() {
     coinRepo.add(Coin("BTC", 0.25))
     coinRepo.add(Coin("ETH", 2.5))
     coinRepo.add(Coin("USDT", 1500.0))
+
+    // Wrap repository data into ApiRepository
+    val response = ApiResponse(
+        "200 OK",
+        coinRepo.getAll()
+    )
 }
