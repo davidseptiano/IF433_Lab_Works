@@ -15,4 +15,25 @@ fun main() {
         "200 OK",
         coinRepo.getAll()
     )
+
+    // Print dashboard
+    println("=== CRYPTO DASHBOARD ===")
+    println("Response Status: ${response.status}")
+    println()
+
+    response.data.forEach { coin ->
+        println("Coin: ${coin.name}")
+        println("Balance: ${coin.balance}")
+        println()
+    }
+
+    // Search demo
+    println("=== SEARCH RESULT ===")
+    val searchResult = coinRepo.searchByName("BT")
+
+    searchResult.forEach {
+        println(it)
+    }
+
+    println()
 }
