@@ -8,7 +8,7 @@ fun main() {
     println("Isi intBox: ${intBox.value}")
     println("Isis stringBoc: ${stringBox.value}")
 
-    println("\n==== TEST MULTIPLE PARAMETERS ===")
+    println("\n=== TEST MULTIPLE PARAMETERS ===")
     val itemPrice = PairBox("Bitcoin", 65000)
     println("Aset: ${itemPrice.key}, Harga: ${itemPrice.value} USD")
 
@@ -17,4 +17,8 @@ fun main() {
     val result = processData("Stable Coin")
     println("Hasil proses: $result")
 
+    println("\n=== TEST CONSTRAINTS ===")
+    val math = MathBox(10.5, 20)
+    println("Total: ${math.sum()}")
+    println("Terbesar: ${getMax(45, 90)}")
 }
