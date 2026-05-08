@@ -14,4 +14,11 @@ class WalletRepository<T> {
     fun getAll() : List<T> {
         return items
     }
+
+    // Search Logic
+    fun searchByName(keyword: String) : List<T> {
+        return items.filter {
+            it is NamedEntitiy && it.name.contains(keyword, ignoreCase = true)
+        }
+    }
 }
