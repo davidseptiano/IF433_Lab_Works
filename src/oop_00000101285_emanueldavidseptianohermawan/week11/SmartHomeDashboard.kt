@@ -66,4 +66,12 @@ fun main() {
     searchResult?.let {
         println(it.diagnose())
     }
+
+    // =========================
+    // Ringkasan dengan with
+    // =========================
+    with(homeDevices) {
+        println("\n===== SMART HOME DASHBOARD =====")
+        println("Jumlah perangkat: ${this.size}")
+    }
 }
