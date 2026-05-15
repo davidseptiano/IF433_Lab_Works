@@ -76,5 +76,7 @@ fun main() {
     }.onFailure { error ->
 
         println("Peringatan ke Pemilik: ${error.message}")
+
+        println("(Opsional: Berikan chicken jerky secara manual)")
     }
 }
