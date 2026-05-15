@@ -28,4 +28,28 @@ fun dispenseKibble(
 fun main() {
 
     var currentKibbleStock = 50
+
+    // Jadwal Makan 1 - Multiple Catch
+    try {
+
+        currentKibbleStock = dispenseKibble(
+            requestedGram = 80,
+            availableGram = currentKibbleStock,
+            isJammed = false
+        )
+
+        println("Sisa stok: $currentKibbleStock gr")
+
+    } catch (e: DispenserJamException) {
+
+        println("ERROR DISPENSER: ${e.message}")
+
+    } catch (e: FoodEmptyException) {
+
+        println("ERROR STOK: ${e.message}")
+
+    } catch (e: Exception) {
+
+        println("ERROR UMUM: ${e.message}")
+    }
 }
