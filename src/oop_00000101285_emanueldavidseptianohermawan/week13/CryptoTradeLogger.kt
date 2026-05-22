@@ -83,4 +83,7 @@ fun main() {
     loadedData.forEach {
         println(it)
     }
+
+    // Final Result
+    println("==== TOTAL PnL BERSIH: $totalPnl ====")
 }
