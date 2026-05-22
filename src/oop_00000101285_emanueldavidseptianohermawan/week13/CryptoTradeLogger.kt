@@ -10,3 +10,8 @@ data class TradeRecord(
     val margin: Double,
     val pnl: Double
 )
+
+// 2. Serialization (Extension Function)
+fun TradeRecord.toCsv(): String {
+    return "$id,$symbol,$type,$margin,$pnl"
+}
