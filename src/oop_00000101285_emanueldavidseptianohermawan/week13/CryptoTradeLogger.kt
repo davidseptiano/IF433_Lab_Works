@@ -71,4 +71,16 @@ fun main() {
     // Inject malformed data
     File("crypto_trades.csv")
         .appendText("CORRUPT_ID,DOGEUSDT,Hold,XX,YY\n")
+
+    // Load valid trades only
+    val loadedData = loadTrades("crypto_trades.csv")
+
+    // Calculate total PnL
+    val totalPnl = loadedData.sumOf { it.pnl }
+
+    // Display valid data
+    println("===== VALID TRADE RECORDS =====")
+    loadedData.forEach {
+        println(it)
+    }
 }
