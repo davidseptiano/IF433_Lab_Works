@@ -67,4 +67,8 @@ fun main() {
 
     // Save to CSV
     saveTrades(trades, "crypto_trades.csv")
+
+    // Inject malformed data
+    File("crypto_trades.csv")
+        .appendText("CORRUPT_ID,DOGEUSDT,Hold,XX,YY\n")
 }
