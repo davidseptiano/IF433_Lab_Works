@@ -36,3 +36,74 @@ class EmailNotifier : NotificationService {
         println("Email terkirim: $message")
     }
 }
+
+// ==========================
+// OCP - Pricing Strategy
+// ==========================
+interface PricingStrategy {
+    fun calculate(price: Double): Double
+}
+
+class RegularPricing : PricingStrategy {
+    override fun calculate(price: Double): Double {
+        return price
+    }
+}
+
+class VipPricing : PricingStrategy {
+    override fun calculate(price: Double): Double {
+        return price * 0.90
+    }
+}
+
+// ==========================
+// Main Processor
+// ==========================
+class SafeOrderProcessor(
+    private val repo: OrderRepository,
+    private val notifier: NotificationService
+) {
+
+    fun processOrder(
+        itemName: String,
+        basePrice: Double,
+        customerType: String,
+        pricingStrategy: PricingStrategy
+    ) {
+
+        val finalPrice = pricingStrategy.calculate(basePrice)
+
+        println("Memproses pesanan $itemName seharga $finalPrice")
+
+        repo.saveOrder(itemName, finalPrice, customerType)
+
+        notifier.sendNotification(
+            "Pesanan $itemName Anda telah dikonfirmasi!"
+        )
+    }
+}
+
+// ==========================
+// Main Function
+// ==========================
+fun main() {
+
+    val repository = CsvOrderRepository(File("orders.csv"))
+    val notifier = EmailNotifier()
+
+    val processor = SafeOrderProcessor(repository, notifier)
+
+    processor.processOrder(
+        itemName = "Laptop",
+        basePrice = 10000000.0,
+        customerType = "VIP",
+        pricingStrategy = VipPricing()
+    )
+
+    processor.processOrder(
+        itemName = "Mouse",
+        basePrice = 250000.0,
+        customerType = "REGULAR",
+        pricingStrategy = RegularPricing()
+    )
+}
