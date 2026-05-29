@@ -1,26 +1,38 @@
 package oop_00000101285_emanueldavidseptianohermawan.week14
-import oop_00000101285_emanueldavidseptianohermawan.week08.Order
+
 import java.io.File
 
-class BadOrderProcessor {
-    // VIOLATION: Hardcoded File I/O (DIP), Melakukan kalkulasi + I/O + Notifikasi sekali
-    private val file = File("orders.csv")
+// ==========================
+// DIP & SRP - Repository
+// ==========================
+interface OrderRepository {
+    fun saveOrder(itemName: String, finalPrice: Double, customerType: String)
+}
 
-    fun processOrder(itemName: String, basePrice: Double, customerType: String) {
+class CsvOrderRepository(private val file: File) : OrderRepository {
 
-        // VIOLATION: Kaku jika ada tipe customer/diskon baru di masa depan (OCP)
-        val finalPrice = when (customerType) {
-            "REGULAR" -> basePrice
-            "VIP" -> basePrice * 0.90 // Diskon 10%
-            else -> basePrice
+    override fun saveOrder(
+        itemName: String,
+        finalPrice: Double,
+        customerType: String
+    ) {
+
+        file.bufferedWriter().use { writer ->
+            writer.append("$itemName,$finalPrice,$customerType\n")
         }
+    }
+}
 
-        println("Memproses pesanan $itemName seharga $finalPrice")
+// ==========================
+// DIP & SRP - Notification
+// ==========================
+interface NotificationService {
+    fun sendNotification(message: String)
+}
 
-        // VIOLATION SRP/DIP: Menulis file langsung di class bisnis
-        file.appendText("$itemName,$finalPrice,$customerType\n")
+class EmailNotifier : NotificationService {
 
-        // VIOLATION SRP/DIP: Notifikasi terikat kuat dengan sistem order
-        println("Email terkirim: Pesanan $itemName Anda telah dikonfirmasi!")
+    override fun sendNotification(message: String) {
+        println("Email terkirim: $message")
     }
 }
